@@ -1,2 +1,5 @@
 PRA ADICIONAR O ANGULAR MATERIAL NO SEU PROJETO
 ng add @angular/material
+
+npm run server
+//RODAR A API
