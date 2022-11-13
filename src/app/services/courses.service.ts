@@ -7,27 +7,27 @@ import {Course} from "../model/course";
 import {map} from "rxjs/operators";
 import {Lesson} from "../model/lesson";
 
-
 @Injectable()
 export class CoursesService {
+
 
     constructor(private http:HttpClient) {
 
     }
 
     findCourseById(courseId: number): Observable<Course> {
-        return this.http.get<Course>(`/api/courses/${courseId}`);
+        return this.http.get<Course>(`http://localhost:9000/api/courses/${courseId}`);
     }
 
     findAllCourses(): Observable<Course[]> {
-        return this.http.get('/api/courses')
+        return this.http.get('http://localhost:9000/api/courses')
             .pipe(
                 map(res => res['payload'])
             );
     }
 
     findAllCourseLessons(courseId:number): Observable<Lesson[]> {
-        return this.http.get('/api/lessons', {
+        return this.http.get('http://localhost:9000/api/lessons', {
             params: new HttpParams()
                 .set('courseId', courseId.toString())
                 .set('pageNumber', "0")
@@ -41,7 +41,7 @@ export class CoursesService {
         courseId:number, sortOrder = 'asc',
         pageNumber = 0, pageSize = 3, sortColumn = 'seqNo'):  Observable<Lesson[]> {
 
-        return this.http.get('/api/lessons', {
+        return this.http.get('http://localhost:9000/api/lessons', {
             params: new HttpParams()
                 .set('courseId', courseId.toString())
                 .set('sortOrder', sortOrder)
