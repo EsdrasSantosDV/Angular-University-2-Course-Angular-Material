@@ -12,11 +12,11 @@ export function searchLessons(req: Request, res: Response) {
     const queryParams = req.query as any;
 
     const courseId = queryParams.courseId,
-          filter = queryParams.filter || '',
-          sortOrder = queryParams.sortOrder,
-          pageNumber = parseInt(queryParams.pageNumber) || 0,
-          pageSize = parseInt(queryParams.pageSize),
-          sortColumn = queryParams.sortColumn ?? "seqNo";
+        filter = queryParams.filter || '',
+        sortOrder = queryParams.sortOrder,
+        pageNumber = parseInt(queryParams.pageNumber) || 0,
+        pageSize = parseInt(queryParams.pageSize),
+        sortColumn = queryParams.sortColumn ?? "seqNo";
 
     let lessons = Object.values(LESSONS)
         .filter(lesson => lesson.courseId == courseId)
@@ -33,7 +33,7 @@ export function searchLessons(req: Request, res: Response) {
         });
 
     if (filter) {
-       lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
+        lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
     }
 
     if (sortOrder == "desc") {

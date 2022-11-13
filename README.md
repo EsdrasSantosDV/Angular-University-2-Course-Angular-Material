@@ -1,5 +1,5 @@
 
-## Angular Material Course
+## Angular Material In Depth
 
 This repository contains the code of the [Angular Material In Depth](https://angular-university.io/course/angular-material-course) video course.
 
