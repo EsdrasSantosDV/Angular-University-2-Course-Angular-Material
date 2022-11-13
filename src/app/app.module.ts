@@ -65,9 +65,11 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     ],
     imports: [
         BrowserModule,
+        //ANIMACOES DO ANGULAR MATERIAL
         BrowserAnimationsModule,
         HttpClientModule,
         MatMenuModule,
+        //ADICIONAR OS MODULOS DO ANGULAR MATERIAL AQUI OU NO MODULO CORRESPONDENTE QUE VC ESTA USANDO
         MatButtonModule,
         MatIconModule,
         MatCardModule,

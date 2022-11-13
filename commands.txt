@@ -1,0 +1,2 @@
+PRA ADICIONAR O ANGULAR MATERIAL NO SEU PROJETO
+ng add @angular/material
