@@ -2,6 +2,47 @@
 
   <h2 class="title">Create New Course</h2>
 
+  <mat-horizontal-stepper class="mat-elevation-z5" [linear]="true" labelPosition="bottom">
+
+<!--    errorMesage  messagem ue vai aparecer quando dar o erro-->
+    <mat-step errorMessage="Course details in error">
+      <ng-template matStepLabel>
+        Course Details
+      </ng-template>
+<!--      CHAMA A PARTIÇÃO AQUI-->
+      <create-course-step-1>
+
+      </create-course-step-1>
+
+<!--      MAT STEPPER NEXT VAI PASSAR PRO PROXIMO STEPPER-->
+      <div class="stepper-buttons">
+        <button mat-raised-button color="primary" matStepperNext>
+          Add Course Lessons
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step errorMessage="Course Lessons in error">
+<!--      MAT STEP LABEL E O LABEL QUE VAI APARECER NO STEP-->
+      <ng-template matStepLabel>
+        Course Lessons
+      </ng-template>
+      <create-course-step-2>
+
+      </create-course-step-2>
+<!--MAT STEPPER PREVIOUS VOLTA PRO STEP ANTERIOR-->
+      <div class="stepper-buttons">
+        <button mat-raised-button matStepperPrevious>
+          Back
+        </button>
+
+        <button mat-raised-button color="accent" >
+          Create Course
+        </button>
+      </div>
+
+    </mat-step>
+  </mat-horizontal-stepper>
 
 </div>
 

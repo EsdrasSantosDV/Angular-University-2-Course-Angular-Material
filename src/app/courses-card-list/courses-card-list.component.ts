@@ -12,6 +12,8 @@ export class CoursesCardListComponent implements OnInit {
     @Input()
     courses: Course[];
 
+    date=new Date();
+
     constructor() {
     }
 
@@ -20,7 +22,7 @@ export class CoursesCardListComponent implements OnInit {
     }
 
     editCourse(course:Course) {
-     
+
 
     }
 
