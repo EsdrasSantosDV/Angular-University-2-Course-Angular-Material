@@ -31,6 +31,23 @@
     <input matInput placeholder="Course title" formControlName="title">
   </mat-form-field>
 
+<!--  Não precisamos do mat- form-field para o radio button-->
+  <mat-radio-group class="course-type" formControlName="courseType">
+<!--    OPCOES DO NOSSO RADIO BUTTON-->
+      <mat-radio-button [disabled]="true"value="free">
+        Free
+      </mat-radio-button >
+
+       <mat-radio-button value="premium">
+         Premium
+       </mat-radio-button>
+
+
+  </mat-radio-group>
+
+
+
+
 </div>
 
 
