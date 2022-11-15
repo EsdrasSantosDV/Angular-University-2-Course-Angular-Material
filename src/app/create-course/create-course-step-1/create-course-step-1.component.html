@@ -1,5 +1,35 @@
 <div [formGroup]="form" class="course-details-form">
 
+<!--  CONTAINER ELEMENT-->
+<!--  float label e o comportamento do label do form field-->
+  <mat-form-field floatLabel="never">
+<!--    matInput Diretiva-->
+    <input matInput placeholder="Course title" formControlName="title" #title>
+<!--MEIO QU EUMA MASCARA -->
+    <span matPrefix>+55</span>
+    <span matSuffix>00</span>
+
+    <mat-hint align="end">
+    {{title.value.length}}/60
+    </mat-hint>
+
+<!--   MATERIAL DIRETIVA DE ERRO-->
+    <mat-error *ngIf="form.controls['title'].errors?.minlength">
+      A minimum length of 5 characters is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <!--    matInput Diretiva-->
+<!--    PODEMOS MUDAR A APARECECIA-->
+    <input matInput placeholder="Course title" formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <!--    matInput Diretiva-->
+    <!--    PODEMOS MUDAR A APARECECIA-->
+    <input matInput placeholder="Course title" formControlName="title">
+  </mat-form-field>
 
 </div>
 
