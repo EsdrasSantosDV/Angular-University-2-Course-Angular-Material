@@ -89,5 +89,34 @@ export class DragDropComponent {
       courseId: 11
     }
   ];
+  done=[];
 
+  dropMultiList(event: CdkDragDrop<Lesson[]>){
+      //PRA PEGAR OS  DOIS CENARIOS
+    //CENARIO 1 ONDE O DROP E NA PROPRIA LISTA
+      if(event.previousContainer==event.container)
+      {
+        moveItemInArray(this.lessons,event.previousIndex,event.currentIndex);
+      }
+      else{
+
+        //CENARIO ONDE O DROP E DE UMA LISTA PRA OUTRA
+        transferArrayItem(event.previousContainer.data,event.container.data,event.previousIndex,event.currentIndex);
+      }
+  }
+
+
+  //AQUI COLOCAMOS O TIPO QUE VAI SER DROPADO NO NOSSO DRAG AND DROP
+  drop(event: CdkDragDrop<Lesson[]>) {
+      console.log("previous Index : ",event.previousIndex);
+      console.log("current Index : ",event.currentIndex);
+
+      //O PRINCIPIO DO DRAG AND DROP E A REPOSIÇAÕ DO ELEMENTO NO ARRAY
+      moveItemInArray(this.lessons,event.previousIndex,event.currentIndex);
+      //PRIMEIRO E O ARRAY QUE VAI SER ALTERADO
+      //ONDE ESTAVA POSICIONADO
+      //LUGAR NOVO A SER REPOSICIOANDOI O ELEMENTO
+
+
+  }
 }

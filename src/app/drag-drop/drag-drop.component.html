@@ -1,16 +1,56 @@
 
-<div class="drag-drop-container">
+<!--O PRINCIPIO DAS DUAS LISTAS-->
+<div class="drag-drop-container" cdkDropListGroup >
 
   <div class="pending">
 
     <h3>Lessons To Watch:</h3>
 
+<!--    O Component Dev Kit (CDK) é um conjunto de primitivas de comportamento para construir componentes de UI -->
+<!-- AQUI ESTAMOS CRIANADO NOSSO DRAG AND DROP CONTAINER    -->
+<!--  PRECISAMSO AGORA PEGAR O EVENTO QUE SOLTA, SERIA O DROP DA LISTA -->
+<!--    PRECISAMOS SEMPRE DO DOLAR EVENT-->
+<!--    PRECISAMOS DA REFERENCIA DA DATA QUE VAI SER DROPADA QUANDO UTILIZAMOS DUAS LISTAS-->
+    <div cdkDropList class="lessons-list"
+         [cdkDropListData]="lessons"
+         (cdkDropListDropped)=" dropMultiList($event)"
+    >
+
+
+<!--      ESTAMOS FALANDO AGORA QQUE AS LICOES PODEM SER DRAGS-->
+      <div class="lesson drag-drop-item" *ngFor="let lesson of lessons" cdkDrag>
+
+<!--        VAI FICAR COM A BORDA PRETA ATRAS NO PLACE, MELHORANDO A UX EXPERINCE-->
+        <div class="drop-placeholder" *cdkDragPlaceholder>
+
+        </div>
+        {{lesson.description}}
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- div class="done">
-
+  <div class="done">
     <h3>Done:</h3>
+<!--    PRA UTILIZAR PRA DUAS LISTAS-->
+    <div cdkDropList class="lessons-list"
+         [cdkDropListData]="done"
+         (cdkDropListDropped)="dropMultiList($event)"
+    >
+      <!--      ESTAMOS FALANDO AGORA QQUE AS LICOES PODEM SER DRAGS-->
+      <div class="lesson drag-drop-item" *ngFor="let lesson of done" cdkDrag>
 
-  </div-->
+        <!--        VAI FICAR COM A BORDA PRETA ATRAS NO PLACE, MELHORANDO A UX EXPERINCE-->
+        <div class="drop-placeholder" *cdkDragPlaceholder>
+
+        </div>
+        {{lesson.description}}
+      </div>
+
+    </div>
+
+  </div>
+
 
 </div>
