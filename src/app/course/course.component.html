@@ -19,6 +19,26 @@
          [dataSource]="lessons"
          multiTemplateDataRows
   >
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox [checked]="selection.hasValue() && isAllSelected()" (change)="toggleAll()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+
+        </mat-checkbox>
+      </th>
+
+      <td  mat-cell *matCellDef="let lesson" (click)="$event.stopPropagation()">
+<!--      ESSE CHECKBOX QUE VAI DETECTAR O CHANGE EVENT-->
+        <mat-checkbox (change)="onLessonToggled(lesson)" [checked]="selection.isSelected(lesson)">
+
+        </mat-checkbox>
+
+      </td>
+
+    </ng-container>
+
     <!--  PRA CADA COLUNA DA TABELA-->
     <ng-container matColumnDef="seqNo">
       <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA IDENTIFICAR QUE E UM TIPO DO TEMPALT ---->
@@ -52,7 +72,7 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="expandedDetail">
-        <td *matCellDef="let lesson"  colspan="3">
+        <td *matCellDef="let lesson"  colspan="4">
           {{lesson.longDescription}}
         </td>
     </ng-container>

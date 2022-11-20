@@ -8,6 +8,7 @@ import {CoursesService} from "../services/courses.service";
 import {debounceTime, distinctUntilChanged, startWith, tap, delay, catchError, finalize} from 'rxjs/operators';
 import {merge, fromEvent, throwError} from 'rxjs';
 import {Lesson} from '../model/lesson';
+import {SelectionModel} from '@angular/cdk/collections';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     lessons :Lesson[]=[];
 
-    displayedColumns=['seqNo' , "description", "duration"];
+    //A ORDEM IMPORTA VIU
+    displayedColumns=['select','seqNo' , "description", "duration"];
 
     expandedLesson:Lesson=null;
 
@@ -34,9 +36,14 @@ export class CourseComponent implements OnInit, AfterViewInit {
     //PEGAR A REFERENCIA DO NOSSO MAT SORT QUE TA NO NOSSO COMPLETO
     @ViewChild(MatSort)
     sort:MatSort;
-
   //PRECISAMOS DETECTAR A PRESENÇA DE EVENTOS DO NOSSO PAGINATOR
   //NO CICLO DE VIDA DO COMPONENTE
+
+
+    //SELECAO DO USUARIO, E O PARAMETRO DO QUE VAI SER SELECIONADO
+    selection=new SelectionModel<Lesson>(true,[]);
+    //PRIMEIRO PARAMETRO DO SEELCTION MODEL E SE VAI SER SELECIONADO MULTIPLAS COISAS
+    //SEGUNDO SE VAI SER SEELCIONADO ALGO JA PREDEFINIDO
 
 
     constructor(private route: ActivatedRoute,
@@ -76,6 +83,13 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   }
 
+
+  onLessonToggled(lesson:Lesson) {
+
+    this.selection.toggle(lesson);
+    console.log(this.selection.selected);
+  }
+
     //SERA AQUI
     ngAfterViewInit() {
       this.sort.sortChange.subscribe(()=> this.paginator.pageIndex=0);
@@ -93,6 +107,19 @@ export class CourseComponent implements OnInit, AfterViewInit {
     }
     else{
       this.expandedLesson=lesson;
+    }
+  }
+
+  isAllSelected() {
+    return this.selection.selected?.length ==this.lessons?.length;
+  }
+
+  toggleAll() {
+    if(this.isAllSelected()){
+      this.selection.clear();
+    }
+    else{
+      this.selection.select(...this.lessons);
     }
   }
 }
