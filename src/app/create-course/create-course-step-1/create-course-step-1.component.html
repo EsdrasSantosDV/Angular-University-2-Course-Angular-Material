@@ -103,6 +103,19 @@
   </mat-checkbox>
 
 
+  <mat-form-field  appearance="outline">
+<!--    LEMBRE-SE PRA TEXTOS MUITOS GRANDES, VOCE DEVE ADICIONAR O FORM CONTROL NAME NO TEXT AREA E NÃO NO MAT FORM FIELD-->
+    <textarea matInput placeholder="Description" formControlName="longDescription"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="2"
+      cdkAutosizeMaxRows="5"
+    >
+<!--  a DIRETIVA  CDKTEXT AREA AUTOSIZE COLOCA SEU TEXT AREA PRO TEXTO QUIE TA-->
+<!--      voce tambem pode limitar o minimo e maximo de linhas que vai aparecer por vez-->
+
+    </textarea>
+  </mat-form-field>
+
 
 
 </div>
