@@ -5,7 +5,19 @@
 
     <h2 class="title">All Courses</h2>
 
-    <button mat-mini-fab routerLink="/add-new-course">
+<!--    Toltip quando o usauiro passar o mouse, no material voce consegue colocar condiçoes pora isso-->
+<!--  ṔOSITION ONDE ELE VAI FICAR-->
+<!--    SHOW DELAY QUANDO TEMPO VAI DEMOAR PRA APARECER-->
+<!--    HIDE QUANDO TEMPO ELE VAI FICAR DEPOIS DE TIRAR O MOUSE-->
+<!--    DISABLED CONDIÇÃO QUE ELE VAI AAPRECER-->
+    <button mat-mini-fab routerLink="/add-new-course"
+            matTooltip="Create a course"
+            matTooltipPosition="right"
+            [matTooltipShowDelay]="1000"
+            [matTooltipHideDelay]="2000"
+            [matTooltipDisabled]="false"
+    >
+
       <mat-icon class="add-course-btn">add</mat-icon>
     </button>
 
