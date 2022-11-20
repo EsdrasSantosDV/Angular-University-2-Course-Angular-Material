@@ -87,22 +87,20 @@
 <!--    DATE PICKER TEM DOIS COMPONENTES-->
 <!--    UM INPUT PRO USUARIO DIGITAR  E UM POP UP QUE PRA ELE SELEICONAR A DATA-->
       <input matInput formControlName="releasedAt" placeholder="Release Date" [matDatepicker]="releasedAtPicker">
-
-
 <!--      PRECISA LINKAR O INPUT AO DATE PICKER-->
 <!--    UTILIZAMOS UM DATE PICKER TOGGLE-->
 <!--    O MAT SUFFIX E PRA FICAR NO FINAL DO FORM FIELD-->
       <mat-datepicker-toggle matSuffix  [for]="releasedAtPicker">
-
       </mat-datepicker-toggle>
-
       <mat-date-range-picker #releasedAtPicker [dateClass]="dateClass">
-
       </mat-date-range-picker>
-
 
   </mat-form-field>
 
+<!--não preicsa de um mat form field o check box-->
+  <mat-checkbox color="primary" formControlName="downloadsAllowed" [indeterminate]="true">
+    Downloads allowed?
+  </mat-checkbox>
 
 
 
