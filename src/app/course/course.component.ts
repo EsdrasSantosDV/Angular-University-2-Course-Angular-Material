@@ -23,6 +23,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     displayedColumns=['seqNo' , "description", "duration"];
 
+    expandedLesson:Lesson=null;
+
     loading=false;
 
     //PRIMEIRA REFERENCIA DO NOSSO Template
@@ -84,4 +86,13 @@ export class CourseComponent implements OnInit, AfterViewInit {
       ).subscribe();
     }
 
+  onToggleLesson(lesson:Lesson) {
+    if(lesson==this.expandedLesson)
+    {
+      this.expandedLesson=null;
+    }
+    else{
+      this.expandedLesson=lesson;
+    }
+  }
 }

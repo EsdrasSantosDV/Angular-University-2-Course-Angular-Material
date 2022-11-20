@@ -17,6 +17,7 @@
          matSortActive="seqNo"
          matSortDirection="asc"
          [dataSource]="lessons"
+         multiTemplateDataRows
   >
     <!--  PRA CADA COLUNA DA TABELA-->
     <ng-container matColumnDef="seqNo">
@@ -46,34 +47,36 @@
       <th mat-header-cell *matHeaderCellDef >
         Duration
       </th>
-
       <td class="duration-cell" *matCellDef="let lesson">
         {{lesson.duration}}
       </td>
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail">
+        <td *matCellDef="let lesson"  colspan="3">
+          {{lesson.longDescription}}
+        </td>
     </ng-container>
 
     <tr mat-header-row
         *matHeaderRowDef="displayedColumns"
     >
-
     </tr>
-
     <tr mat-row
+        (click)="onToggleLesson(lesson)"
         *matRowDef="let lesson;columns:displayedColumns"
     >
     </tr>
 
+    <tr mat-row
+        *matRowDef="let lesson;columns:['expandedDetail']"
+        [class.collapsed-detail]="lesson != expandedLesson"
+    >
 
+    </tr>
   </table>
 
   <mat-paginator class="mat-elevation-z8" [length]="course?.lessonsCount" [pageSize]="3" [pageSizeOptions]="[3,5,10]">
-
-
   </mat-paginator>
-
-
-
-
 
 </div>
 
