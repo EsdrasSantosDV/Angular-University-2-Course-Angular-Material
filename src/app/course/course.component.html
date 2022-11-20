@@ -10,90 +10,92 @@
     </mat-spinner>
   </div>
 
+  <div class="scrolling-container">
+    <table mat-table class="lessons-table mat-elevation-z8"
+           matSort
+           matSortDisableClear
+           matSortActive="seqNo"
+           matSortDirection="asc"
+           [dataSource]="lessons"
+           multiTemplateDataRows
+    >
 
-  <table mat-table class="lessons-table mat-elevation-z8"
-         matSort
-         matSortDisableClear
-         matSortActive="seqNo"
-         matSortDirection="asc"
-         [dataSource]="lessons"
-         multiTemplateDataRows
-  >
+      <ng-container matColumnDef="select" sticky>
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox [checked]="selection.hasValue() && isAllSelected()" (change)="toggleAll()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
 
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox [checked]="selection.hasValue() && isAllSelected()" (change)="toggleAll()"
-        [indeterminate]="selection.hasValue() && !isAllSelected()"
-        >
+          </mat-checkbox>
+        </th>
 
-        </mat-checkbox>
-      </th>
+        <td  mat-cell *matCellDef="let lesson" (click)="$event.stopPropagation()">
+          <!--      ESSE CHECKBOX QUE VAI DETECTAR O CHANGE EVENT-->
+          <mat-checkbox (change)="onLessonToggled(lesson)" [checked]="selection.isSelected(lesson)">
 
-      <td  mat-cell *matCellDef="let lesson" (click)="$event.stopPropagation()">
-<!--      ESSE CHECKBOX QUE VAI DETECTAR O CHANGE EVENT-->
-        <mat-checkbox (change)="onLessonToggled(lesson)" [checked]="selection.isSelected(lesson)">
+          </mat-checkbox>
 
-        </mat-checkbox>
+        </td>
 
-      </td>
+      </ng-container>
 
-    </ng-container>
+      <!--  PRA CADA COLUNA DA TABELA-->
+      <ng-container matColumnDef="seqNo" sticky>
+        <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA IDENTIFICAR QUE E UM TIPO DO TEMPALT ---->
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="" >
+          #
+        </th>
 
-    <!--  PRA CADA COLUNA DA TABELA-->
-    <ng-container matColumnDef="seqNo">
-      <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA IDENTIFICAR QUE E UM TIPO DO TEMPALT ---->
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="" >
-        #
-      </th>
+        <td mat-cell *matCellDef="let lesson" >
+          {{lesson.seqNo}}
+        </td>
+      </ng-container>
 
-      <td mat-cell *matCellDef="let lesson" >
-        {{lesson.seqNo}}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="description">
+        <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA FUNCIONALIDADE-->
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="" >
+          Description
+        </th>
 
-    <ng-container matColumnDef="description">
-      <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA FUNCIONALIDADE-->
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="" >
-        Description
-      </th>
+        <td mat-cell *matCellDef="let lesson">
+          {{lesson.description}}
+        </td>
+      </ng-container>
 
-      <td mat-cell *matCellDef="let lesson">
-        {{lesson.description}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="duration">
-      <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA FUNCIONALIDADE-->
-      <th mat-header-cell *matHeaderCellDef >
-        Duration
-      </th>
-      <td class="duration-cell" *matCellDef="let lesson">
-        {{lesson.duration}}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="expandedDetail">
+      <ng-container matColumnDef="duration">
+        <!--    PRECISA DESSAS DUAS DIRETIVAS UMA PRO CSS E A OUTRA PRA FUNCIONALIDADE-->
+        <th mat-header-cell *matHeaderCellDef >
+          Duration
+        </th>
+        <td class="duration-cell" *matCellDef="let lesson">
+          {{lesson.duration}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="expandedDetail">
         <td *matCellDef="let lesson"  colspan="4">
           {{lesson.longDescription}}
         </td>
-    </ng-container>
+      </ng-container>
 
-    <tr mat-header-row
-        *matHeaderRowDef="displayedColumns"
-    >
-    </tr>
-    <tr mat-row
-        (click)="onToggleLesson(lesson)"
-        *matRowDef="let lesson;columns:displayedColumns"
-    >
-    </tr>
+      <tr mat-header-row
+          *matHeaderRowDef="displayedColumns;sticky:true"
+      >
+      </tr>
+      <tr mat-row
+          (click)="onToggleLesson(lesson)"
+          *matRowDef="let lesson;columns:displayedColumns"
+      >
+      </tr>
 
-    <tr mat-row
-        *matRowDef="let lesson;columns:['expandedDetail']"
-        [class.collapsed-detail]="lesson != expandedLesson"
-    >
+      <tr mat-row
+          *matRowDef="let lesson;columns:['expandedDetail']"
+          [class.collapsed-detail]="lesson != expandedLesson"
+      >
 
-    </tr>
-  </table>
+      </tr>
+    </table>
+  </div>
+
 
   <mat-paginator class="mat-elevation-z8" [length]="course?.lessonsCount" [pageSize]="3" [pageSizeOptions]="[3,5,10]">
   </mat-paginator>
