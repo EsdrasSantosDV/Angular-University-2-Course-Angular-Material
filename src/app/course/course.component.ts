@@ -98,6 +98,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
       }
     ];
 
+    displayedColumns=['seqNo' , "description", "duration"];
+
+
     constructor(private route: ActivatedRoute,
                 private coursesService: CoursesService) {
 
